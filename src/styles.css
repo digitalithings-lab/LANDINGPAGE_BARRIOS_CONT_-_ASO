@@ -1,1 +1,203 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100%;
+}
+
+section[id],
+div[id='testimonios'] {
+  scroll-margin-top: 6rem;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: visible !important;
+  height: auto !important;
+  min-height: 100vh;
+  position: relative;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Dark Mode Overrides (Prestige Ledger) */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #1a1617 !important;
+  color: #f7eff0 !important;
+}
+
+html.dark header {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+html.dark .floating-nav-pill {
+  background-color: rgba(38, 32, 34, 0.92) !important;
+  border-color: rgba(218, 192, 194, 0.2) !important;
+}
+
+html.dark nav {
+  background-color: #262022 !important;
+  border-color: rgba(218, 192, 194, 0.2) !important;
+}
+
+html.dark nav a:not(.bg-primary) {
+  color: #d0c2c3 !important;
+}
+
+html.dark nav a:not(.bg-primary):hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: #ffb2bc !important;
+}
+
+html.dark #inicio,
+html.dark #quienes-somos,
+html.dark #contacto {
+  background-color: #1a1617 !important;
+}
+
+html.dark section.bg-surface-container-low {
+  background-color: #211c1d !important;
+}
+
+html.dark .bg-surface-container-lowest,
+html.dark .bg-surface-container-lowest\/90,
+html.dark .bg-surface-container-lowest\/95 {
+  background-color: #262022 !important;
+  border-color: rgba(218, 192, 194, 0.15) !important;
+}
+
+html.dark .bg-surface-container-lowest\/90 {
+  background-color: rgba(38, 32, 34, 0.92) !important;
+}
+
+html.dark .bg-surface-container-lowest\/95 {
+  background-color: rgba(38, 32, 34, 0.96) !important;
+}
+
+html.dark .bg-surface-container-lowest:hover {
+  background-color: #2f282a !important;
+}
+
+html.dark .bg-surface-container {
+  background-color: #2a2325 !important;
+}
+
+html.dark .bg-surface-container-low {
+  background-color: #262022 !important;
+  border-color: rgba(218, 192, 194, 0.15) !important;
+}
+
+html.dark .bg-surface-container-high {
+  background-color: #2f282a !important;
+  border-color: rgba(218, 192, 194, 0.2) !important;
+}
+
+html.dark .bg-surface {
+  background-color: #1a1617 !important;
+}
+
+html.dark .text-on-surface {
+  color: #f7eff0 !important;
+}
+
+html.dark .text-on-surface-variant {
+  color: #d0c2c3 !important;
+}
+
+html.dark .text-primary {
+  color: #ffb2bc !important;
+}
+
+html.dark .bg-primary-fixed .text-primary,
+html.dark .bg-secondary-fixed .text-primary {
+  color: #5e1326 !important;
+}
+
+html.dark .text-secondary {
+  color: #e5bcc2 !important;
+}
+
+html.dark .text-tertiary {
+  color: #abcae3 !important;
+}
+
+html.dark .hover\:text-primary:hover,
+html.dark .group:hover .group-hover\:text-primary {
+  color: #ffb2bc !important;
+}
+
+html.dark #inicio .rounded-t-\[190px\] {
+  background: linear-gradient(to bottom, #ffffff, #faf2e4, #f0dcba) !important;
+  border-color: rgba(232, 200, 114, 0.45) !important;
+}
+
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: #262022 !important;
+  color: #f7eff0 !important;
+  border-color: #544244 !important;
+}
+
+html.dark input:focus,
+html.dark select:focus,
+html.dark textarea:focus {
+  border-color: #ff96a6 !important;
+}
+
+html.dark .hover\:bg-surface-container:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .border-outline-variant\/30,
+html.dark .border-outline-variant\/40,
+html.dark .border-outline-variant\/60 {
+  border-color: rgba(218, 192, 194, 0.15) !important;
+}
+
+html.dark a.bg-surface {
+  background-color: #262022 !important;
+  color: #ffb2bc !important;
+  border-color: #544244 !important;
+}
+
+html.dark a.bg-surface:hover {
+  background-color: #342b2d !important;
+  color: #ffffff !important;
+}
+
+html,
+body,
+header,
+nav,
+section,
+div,
+button,
+input,
+textarea,
+select {
+  transition:
+    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}

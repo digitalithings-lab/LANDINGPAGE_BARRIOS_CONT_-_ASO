@@ -12,6 +12,7 @@ import { ContactComponent } from './component/contact/contact.component';
 import { CtaBannerComponent } from './component/cta-banner/cta-banner.component';
 import { FloatingActionsComponent } from './component/floating-actions/floating-actions.component';
 import { FooterComponent } from './component/footer/footer.component';
+import { LegalModalComponent } from './component/legal-modal/legal-modal.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FooterComponent } from './component/footer/footer.component';
     ContactComponent,
     CtaBannerComponent,
     FloatingActionsComponent,
-    FooterComponent
+    FooterComponent,
+    LegalModalComponent
   ],
   imports: [
     BrowserModule,

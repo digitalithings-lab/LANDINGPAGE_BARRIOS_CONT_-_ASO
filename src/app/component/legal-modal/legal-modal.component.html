@@ -1,0 +1,152 @@
+<div
+  *ngIf="isOpen"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="legal-modal-title"
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm"
+  (click)="close()"
+>
+  <div
+    class="w-full max-w-2xl max-h-[85vh] bg-surface-container-lowest text-on-surface rounded-3xl border border-outline-variant/40 shadow-2xl flex flex-col overflow-hidden"
+    (click)="$event.stopPropagation()"
+  >
+    <!-- Header -->
+    <div class="px-6 py-5 border-b border-outline-variant/30 flex items-center justify-between gap-4 bg-surface-container-low">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-primary text-on-primary flex items-center justify-center flex-shrink-0">
+          <span class="material-symbols-outlined text-xl">gavel</span>
+        </div>
+        <div>
+          <h2 id="legal-modal-title" class="font-headline-large text-lg sm:text-xl font-bold text-on-surface leading-tight">
+            {{ activeTab === 'privacy' ? 'Aviso de Privacidad' : 'Términos y Condiciones' }}
+          </h2>
+          <p class="text-xs text-secondary font-medium">Barrios Contadores &amp; Asociados • Panamá</p>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        aria-label="Cerrar ventana legal"
+        class="w-9 h-9 rounded-full border border-outline-variant/50 bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:border-primary/40 flex items-center justify-center transition-colors"
+        (click)="close()"
+      >
+        <span class="material-symbols-outlined text-lg">close</span>
+      </button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="px-6 pt-4 pb-2 flex items-center gap-2 border-b border-outline-variant/20 bg-surface-container-lowest">
+      <button
+        type="button"
+        (click)="selectTab('privacy')"
+        [ngClass]="
+          activeTab === 'privacy'
+            ? 'bg-primary text-on-primary font-semibold shadow-sm'
+            : 'bg-surface-container-low text-on-surface-variant hover:text-primary'
+        "
+        class="px-4 py-2 rounded-full text-xs sm:text-sm transition-all"
+      >
+        Aviso de Privacidad
+      </button>
+      <button
+        type="button"
+        (click)="selectTab('terms')"
+        [ngClass]="
+          activeTab === 'terms'
+            ? 'bg-primary text-on-primary font-semibold shadow-sm'
+            : 'bg-surface-container-low text-on-surface-variant hover:text-primary'
+        "
+        class="px-4 py-2 rounded-full text-xs sm:text-sm transition-all"
+      >
+        Términos y Condiciones
+      </button>
+    </div>
+
+    <!-- Scrollable Legal Content -->
+    <div class="p-6 overflow-y-auto space-y-5 text-sm text-on-surface-variant leading-relaxed">
+      <!-- Aviso de Privacidad -->
+      <ng-container *ngIf="activeTab === 'privacy'">
+        <p class="text-xs font-semibold text-secondary uppercase tracking-wider">
+          Última actualización: Noviembre 2026 • Conforme a la Ley 81 de 2019 (República de Panamá)
+        </p>
+
+        <section class="space-y-2">
+          <h3 class="text-base font-bold text-on-surface">1. Responsable del tratamiento de datos</h3>
+          <p>
+            <strong>Barrios Contadores &amp; Asociados</strong>, firma de Contadores Públicos Autorizados (CPA) con sede en la Ciudad de Panamá, República de Panamá, es responsable del tratamiento confidencial de los datos personales que nos proporciones voluntariamente a través de nuestros canales de contacto.
+          </p>
+        </section>
+
+        <section class="space-y-2">
+          <h3 class="text-base font-bold text-on-surface">2. Datos que recopilamos y finalidad</h3>
+          <p>
+            A través del formulario de consulta, correo electrónico (<strong>barrioscontadores&#64;gmail.com</strong>) o WhatsApp (<strong>+507 6227-2263</strong>), podemos solicitar tu nombre completo, número de teléfono, correo electrónico y detalles sobre el servicio contable, fiscal o laboral de tu interés.
+          </p>
+          <p>
+            Estos datos se utilizan exclusivamente para atender tu solicitud, elaborar cotizaciones, brindar asesoría profesional y dar seguimiento comercial o contractual. No vendemos, alquilamos ni cedemos tus datos personales a terceros.
+          </p>
+        </section>
+
+        <section class="space-y-2">
+          <h3 class="text-base font-bold text-on-surface">3. Almacenamiento en el navegador y cookies</h3>
+          <p>
+            Este sitio web <strong>no utiliza cookies de rastreo ni publicidad</strong>. Únicamente emplea el almacenamiento local del navegador (<code>localStorage</code>) para recordar tu preferencia visual entre modo claro y modo oscuro, sin almacenar información personal ni financiera.
+          </p>
+        </section>
+
+        <section class="space-y-2">
+          <h3 class="text-base font-bold text-on-surface">4. Derechos ARCO del titular</h3>
+          <p>
+            De conformidad con la Ley 81 de 2019 sobre Protección de Datos Personales de Panamá, puedes ejercer en cualquier momento tus derechos de acceso, rectificación, cancelación u oposición escribiendo a <strong>barrioscontadores&#64;gmail.com</strong> o vía WhatsApp al <strong>+507 6227-2263</strong>.
+          </p>
+        </section>
+      </ng-container>
+
+      <!-- Términos y Condiciones -->
+      <ng-container *ngIf="activeTab === 'terms'">
+        <p class="text-xs font-semibold text-secondary uppercase tracking-wider">
+          Última actualización: Noviembre 2026 • República de Panamá
+        </p>
+
+        <section class="space-y-2">
+          <h3 class="text-base font-bold text-on-surface">1. Aceptación y objeto del sitio</h3>
+          <p>
+            El acceso y uso del sitio web de <strong>Barrios Contadores &amp; Asociados</strong> implica la aceptación de los presentes Términos y Condiciones. Este portal tiene fines informativos sobre nuestros servicios de contabilidad, asesoría tributaria ante la DGI, gestión laboral ante CSS/SIPE, trámites legales y facturación electrónica en Panamá.
+          </p>
+        </section>
+
+        <section class="space-y-2">
+          <h3 class="text-base font-bold text-on-surface">2. Alcance de la información y relación profesional</h3>
+          <p>
+            El contenido publicado en esta página es de carácter informativo y no constituye por sí solo una opinión fiscal vinculante ni establece una relación cliente-contador. La prestación formal de servicios profesionales se inicia únicamente mediante cotización aceptada o acuerdo de servicios entre las partes.
+          </p>
+        </section>
+
+        <section class="space-y-2">
+          <h3 class="text-base font-bold text-on-surface">3. Propiedad intelectual</h3>
+          <p>
+            La marca, logotipo, textos, diseño gráfico y estructura visual de este sitio pertenecen a <strong>Barrios Contadores &amp; Asociados</strong> y están protegidos por la normativa aplicable. Queda prohibida su reproducción o uso comercial sin autorización previa por escrito.
+          </p>
+        </section>
+
+        <section class="space-y-2">
+          <h3 class="text-base font-bold text-on-surface">4. Enlaces externos y legislación aplicable</h3>
+          <p>
+            Este sitio incluye enlaces directos a plataformas externas como WhatsApp e Instagram para facilitar la comunicación. No nos responsabilizamos por la disponibilidad o políticas propias de dichas plataformas. Estos términos se rigen por las leyes de la República de Panamá.
+          </p>
+        </section>
+      </ng-container>
+    </div>
+
+    <!-- Footer Action -->
+    <div class="px-6 py-4 border-t border-outline-variant/20 bg-surface-container-low flex justify-end">
+      <button
+        type="button"
+        class="px-6 py-2.5 rounded-full bg-primary hover:bg-primary-container text-on-primary text-sm font-bold transition-colors"
+        (click)="close()"
+      >
+        Entendido
+      </button>
+    </div>
+  </div>
+</div>

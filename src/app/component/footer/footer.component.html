@@ -33,7 +33,7 @@
       <!-- Attention & WhatsApp -->
       <div class="md:col-span-3 space-y-3">
         <h2 class="text-xs font-bold text-white tracking-wider uppercase">Atención</h2>
-        <p class="text-sm text-surface-container-highest">Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+        <p class="text-sm text-surface-container-highest">Lunes a Viernes: 8:00 AM - 5:00 PM</p>
         <p class="text-sm text-surface-container-highest">Ciudad de Panamá, Rep. de Panamá</p>
         <div class="pt-2">
           <a
@@ -57,8 +57,20 @@
         <p>© 2024 Barrios Contadores &amp; Asociados. Todos los derechos reservados. Panamá, Rep. de Panamá.</p>
       </div>
       <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-        <a class="hover:text-gold-light transition-colors" href="#contacto">Aviso de Privacidad</a>
-        <a class="hover:text-gold-light transition-colors" href="#contacto">Términos y Condiciones</a>
+        <button
+          type="button"
+          class="hover:text-gold-light transition-colors cursor-pointer"
+          (click)="onOpenLegal('privacy')"
+        >
+          Aviso de Privacidad
+        </button>
+        <button
+          type="button"
+          class="hover:text-gold-light transition-colors cursor-pointer"
+          (click)="onOpenLegal('terms')"
+        >
+          Términos y Condiciones
+        </button>
         <span class="text-surface-container-highest/80">
           Hecho por <span class="text-gold-light font-semibold">Digitalithings</span>
         </span>

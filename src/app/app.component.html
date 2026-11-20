@@ -9,4 +9,11 @@
 </main>
 
 <app-floating-actions></app-floating-actions>
-<app-footer></app-footer>
+<app-footer (openLegal)="openLegalModal($event)"></app-footer>
+
+<app-legal-modal
+  [isOpen]="isLegalModalOpen"
+  [activeTab]="activeLegalTab"
+  (tabChanged)="activeLegalTab = $event"
+  (closed)="closeLegalModal()"
+></app-legal-modal>

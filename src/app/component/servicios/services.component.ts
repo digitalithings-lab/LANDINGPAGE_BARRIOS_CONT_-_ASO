@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 interface ServiceItem {
   title: string;
@@ -13,10 +13,12 @@ interface ServiceItem {
   selector: 'app-services',
   templateUrl: './services.component.html'
 })
-export class ServicesComponent {
+export class ServicesComponent implements OnInit, OnDestroy {
   @ViewChild('servicesTrack') servicesTrack?: ElementRef<HTMLDivElement>;
 
   activeServicePage = 0;
+  private autoplayTimer?: ReturnType<typeof setInterval>;
+  private isPaused = false;
 
   readonly services: ServiceItem[] = [
     {
@@ -86,6 +88,28 @@ export class ServicesComponent {
     }
   ];
 
+  ngOnInit(): void {
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+      this.startAutoplay();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.stopAutoplay();
+  }
+
+  pauseAutoplay(): void {
+    this.isPaused = true;
+  }
+
+  resumeAutoplay(): void {
+    this.isPaused = false;
+  }
+
   scrollServices(delta: number): void {
     const track = this.servicesTrack?.nativeElement;
     if (!track) {
@@ -114,5 +138,33 @@ export class ServicesComponent {
       return;
     }
     this.activeServicePage = track.scrollLeft > maxScroll * 0.45 ? 1 : 0;
+  }
+
+  private startAutoplay(): void {
+    this.stopAutoplay();
+    this.autoplayTimer = setInterval(() => {
+      if (this.isPaused) {
+        return;
+      }
+      const track = this.servicesTrack?.nativeElement;
+      if (!track) {
+        return;
+      }
+      const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 12;
+      if (atEnd) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        const firstCard = track.firstElementChild as HTMLElement | null;
+        const step = firstCard ? firstCard.offsetWidth + 24 : 380;
+        track.scrollBy({ left: step, behavior: 'smooth' });
+      }
+    }, 4000);
+  }
+
+  private stopAutoplay(): void {
+    if (this.autoplayTimer) {
+      clearInterval(this.autoplayTimer);
+      this.autoplayTimer = undefined;
+    }
   }
 }

@@ -33,6 +33,12 @@
     <div
       #servicesTrack
       (scroll)="onServicesScroll()"
+      (mouseenter)="pauseAutoplay()"
+      (mouseleave)="resumeAutoplay()"
+      (focusin)="pauseAutoplay()"
+      (focusout)="resumeAutoplay()"
+      (touchstart)="pauseAutoplay()"
+      (touchend)="resumeAutoplay()"
       class="flex gap-6 overflow-x-auto scroll-smooth pb-4 pt-1 snap-x snap-mandatory no-scrollbar"
     >
       <div

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 interface Testimonial {
   initial: string;
@@ -19,10 +19,12 @@ interface PillarItem {
   selector: 'app-about-testimonials',
   templateUrl: './about-testimonials.component.html'
 })
-export class AboutTestimonialsComponent {
+export class AboutTestimonialsComponent implements OnInit, OnDestroy {
   @ViewChild('testimonialsSlider') testimonialsSlider?: ElementRef<HTMLDivElement>;
 
   activeTestimonialIndex = 0;
+  private autoplayTimer?: ReturnType<typeof setInterval>;
+  private isPaused = false;
 
   readonly collageTopImageUrl =
     'https://lh3.googleusercontent.com/aida-public/AB6AXuBRM1YLSlJFoQSgcy2yEp_P_ODFaNZeTI9sUy_vq0y-chddFNrXVTE3Tq2t-RVvPyOp2tqfGNdxUP1xkXzaobrcA0o1l9hhP-AwuBcc_eXrBae2NuqM67jGXofkl_npHK6OIoSIvaFIMiRfVi8r2gsTQ_paKB964pflzMBh9gk6pGXYdbKxVk_IiphPhW5Mx84pjL88yh-eK6jlVcgeQwyrfTAhxumVlGaNeDlnQSmeIef2HVI2wZQ';
@@ -84,6 +86,28 @@ export class AboutTestimonialsComponent {
     }
   ];
 
+  ngOnInit(): void {
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+      this.startAutoplay();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.stopAutoplay();
+  }
+
+  pauseAutoplay(): void {
+    this.isPaused = true;
+  }
+
+  resumeAutoplay(): void {
+    this.isPaused = false;
+  }
+
   scrollTestimonials(direction: number): void {
     const nextIndex = Math.max(
       0,
@@ -109,6 +133,24 @@ export class AboutTestimonialsComponent {
     const index = Math.round(track.scrollLeft / track.clientWidth);
     if (index >= 0 && index < this.testimonials.length) {
       this.activeTestimonialIndex = index;
+    }
+  }
+
+  private startAutoplay(): void {
+    this.stopAutoplay();
+    this.autoplayTimer = setInterval(() => {
+      if (this.isPaused) {
+        return;
+      }
+      const nextIndex = (this.activeTestimonialIndex + 1) % this.testimonials.length;
+      this.goToTestimonial(nextIndex);
+    }, 4500);
+  }
+
+  private stopAutoplay(): void {
+    if (this.autoplayTimer) {
+      clearInterval(this.autoplayTimer);
+      this.autoplayTimer = undefined;
     }
   }
 }

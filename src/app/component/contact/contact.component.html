@@ -87,25 +87,59 @@
           <div
             *ngIf="formSubmitted"
             role="status"
-            class="mb-6 p-4 rounded-2xl bg-primary-fixed/60 border border-primary/30 text-on-primary-fixed flex items-center justify-between gap-3"
+            class="mb-6 p-4 rounded-2xl bg-primary-fixed/60 border border-primary/30 text-on-primary-fixed flex flex-col gap-3"
           >
-            <div class="flex items-center gap-3">
-              <span class="material-symbols-outlined text-primary">check_circle</span>
-              <p class="text-sm font-semibold">
-                Gracias por escribirnos. Nuestro equipo se pondrá en contacto a la brevedad.
-              </p>
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">check_circle</span>
+                <p class="text-sm font-semibold">
+                  ¡Solicitud lista! Se abrirá tu aplicación de correo para enviarla. Si no se abrió, usa una de estas opciones:
+                </p>
+              </div>
+              <button
+                type="button"
+                aria-label="Cerrar aviso"
+                class="text-xs font-bold underline flex-shrink-0"
+                (click)="formSubmitted = false"
+              >
+                Cerrar
+              </button>
             </div>
-            <button
-              type="button"
-              aria-label="Cerrar aviso"
-              class="text-xs font-bold underline"
-              (click)="formSubmitted = false"
-            >
-              Cerrar
-            </button>
+            <div class="flex flex-wrap gap-2 pl-9">
+              <a
+                *ngIf="mailtoUrl"
+                [href]="mailtoUrl"
+                class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary text-on-primary text-xs font-bold hover:bg-primary-container transition-colors"
+              >
+                <span class="material-symbols-outlined text-sm">mail</span>
+                <span>Abrir en correo</span>
+              </a>
+              <a
+                *ngIf="whatsappFallbackUrl"
+                [href]="whatsappFallbackUrl"
+                rel="noopener noreferrer"
+                target="_blank"
+                class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-whatsapp-green text-white text-xs font-bold hover:opacity-90 transition-opacity"
+              >
+                <span>Enviar por WhatsApp</span>
+              </a>
+            </div>
           </div>
 
           <form class="space-y-5" (ngSubmit)="submitConsultation()" ngNativeValidate>
+            <!-- Honeypot anti-spam (hidden from users) -->
+            <div class="hidden" aria-hidden="true">
+              <label for="website">Sitio web</label>
+              <input
+                id="website"
+                name="website"
+                type="text"
+                tabindex="-1"
+                autocomplete="off"
+                [(ngModel)]="contactForm.website"
+              >
+            </div>
+
             <!-- Name -->
             <div>
               <label class="block text-xs font-bold text-on-surface mb-1.5 uppercase tracking-wide" for="full_name">
@@ -116,6 +150,8 @@
                 id="full_name"
                 name="full_name"
                 [(ngModel)]="contactForm.fullName"
+                autocomplete="name"
+                maxlength="100"
                 placeholder="Ej: Lic. Roberto Méndez"
                 required
                 type="text"
@@ -138,6 +174,9 @@
                   id="phone"
                   name="phone"
                   [(ngModel)]="contactForm.phone"
+                  autocomplete="tel"
+                  maxlength="25"
+                  pattern="[0-9+\-\s()]{7,25}"
                   placeholder="+507 6000-0000"
                   required
                   type="tel"
@@ -152,6 +191,8 @@
                   id="email"
                   name="email"
                   [(ngModel)]="contactForm.email"
+                  autocomplete="email"
+                  maxlength="120"
                   placeholder="ejemplo@negocio.com"
                   required
                   type="email"
@@ -190,6 +231,7 @@
                 id="message"
                 name="message"
                 [(ngModel)]="contactForm.message"
+                maxlength="1000"
                 placeholder="Cuéntanos brevemente sobre tu negocio y cómo podemos ayudarte..."
                 rows="4"
               ></textarea>

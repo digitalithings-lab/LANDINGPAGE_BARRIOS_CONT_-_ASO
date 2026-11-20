@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   activeSection = 'inicio';
 
   readonly logoUrl = 'assets/favicon.png';
+  readonly instagramUrl = 'https://www.instagram.com/barrioscontadores/';
 
   readonly navItems = [
     { id: 'inicio', label: 'Inicio' },
@@ -35,7 +36,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   toggleDarkMode(): void {
     document.documentElement.classList.toggle('dark');
     this.isDarkMode = document.documentElement.classList.contains('dark');
-    localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
+    try {
+      localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
+    } catch {
+      // Ignore storage errors in restricted browsing modes
+    }
   }
 
   toggleMobileMenu(): void {

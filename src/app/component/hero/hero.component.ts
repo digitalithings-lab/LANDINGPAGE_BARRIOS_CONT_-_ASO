@@ -29,7 +29,8 @@ export class HeroComponent {
   activeSlideIndex = 0;
   isPaused = false;
 
-  private touchStartX = 0;
+  private touchStartX: number | null = null;
+  private touchStartY: number | null = null;
 
   readonly slides: HeroSlide[] = [
     {
@@ -154,18 +155,39 @@ export class HeroComponent {
 
   onTouchStart(event: TouchEvent): void {
     this.pauseAutoplay();
-    this.touchStartX = event.changedTouches[0]?.clientX ?? 0;
+    if (event.touches.length !== 1) {
+      this.touchStartX = null;
+      this.touchStartY = null;
+      return;
+    }
+    this.touchStartX = event.changedTouches[0]?.clientX ?? null;
+    this.touchStartY = event.changedTouches[0]?.clientY ?? null;
   }
 
   onTouchEnd(event: TouchEvent): void {
-    const deltaX = (event.changedTouches[0]?.clientX ?? 0) - this.touchStartX;
-    if (Math.abs(deltaX) > 45) {
-      if (deltaX < 0) {
-        this.nextSlide();
-      } else {
-        this.prevSlide();
+    if (this.touchStartX !== null && this.touchStartY !== null) {
+      const endX = event.changedTouches[0]?.clientX ?? this.touchStartX;
+      const endY = event.changedTouches[0]?.clientY ?? this.touchStartY;
+      const deltaX = endX - this.touchStartX;
+      const deltaY = endY - this.touchStartY;
+
+      if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+        if (deltaX < 0) {
+          this.nextSlide();
+        } else {
+          this.prevSlide();
+        }
       }
     }
+
+    this.touchStartX = null;
+    this.touchStartY = null;
+    this.resumeAutoplay();
+  }
+
+  onTouchCancel(): void {
+    this.touchStartX = null;
+    this.touchStartY = null;
     this.resumeAutoplay();
   }
 }

@@ -1,0 +1,67 @@
+@keyframes heroSlideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroVisualFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+}
+
+@keyframes heroProgressFill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.hero-slide-content {
+  animation: heroSlideFadeIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-slide-visual {
+  animation: heroVisualFadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-progress-bar {
+  transform-origin: left center;
+  animation: heroProgressFill var(--hero-interval, 5000ms) linear forwards;
+}
+
+.hero-progress-bar.is-paused {
+  animation-play-state: paused;
+}
+
+/* Fondo del banner: degradado vino con trama sutil de puntos */
+.hero-dots-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 55%, #000 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 55%, #000 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide-content,
+  .hero-slide-visual {
+    animation: none;
+  }
+
+  .hero-progress-bar {
+    animation: none;
+    transform: scaleX(1);
+  }
+}

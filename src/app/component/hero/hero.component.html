@@ -1,7 +1,7 @@
 <section
   aria-label="Servicios y propuesta de valor de Barrios Contadores y Asociados"
   aria-roledescription="carousel"
-  class="relative overflow-hidden bg-primary outline-none pt-24 sm:pt-28 lg:pt-28 pb-16 sm:pb-20"
+  class="relative overflow-hidden bg-primary outline-none pt-24 sm:pt-28 lg:pt-28 pb-6 sm:pb-8 min-h-[100svh] flex flex-col justify-between"
   id="inicio"
   tabindex="0"
   [style.--hero-interval]="autoplayIntervalMs + 'ms'"
@@ -47,7 +47,7 @@
   </button>
 
   <!-- Carousel Stage: all slides share the same CSS grid cell so every banner keeps the exact same size -->
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-24 relative z-10">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-24 relative z-10 w-full my-auto py-4">
     <div class="grid grid-cols-1 items-stretch lg:min-h-[430px]">
       <div
         *ngFor="let slide of slides; let i = index"
@@ -198,48 +198,114 @@
     </div>
   </div>
 
-  <!-- Bottom controls: mobile arrows + pagination dots with timer bar -->
-  <div class="absolute bottom-4 sm:bottom-6 inset-x-0 z-20 flex items-center justify-center gap-4">
-    <button
-      aria-label="Banner anterior"
-      class="lg:hidden w-9 h-9 rounded-full border border-white/25 bg-white/10 text-white active:scale-95 transition-all flex items-center justify-center"
-      type="button"
-      (click)="prevSlide()"
-    >
-      <span class="material-symbols-outlined text-xl">chevron_left</span>
-    </button>
-
-    <div class="flex items-center gap-2" role="tablist" aria-label="Seleccionar banner">
+  <!-- Bottom controls + trust bar -->
+  <div class="relative z-20 max-w-7xl mx-auto px-6 sm:px-8 lg:px-24 w-full pt-4">
+    <!-- Mobile arrows + pagination dots with timer bar -->
+    <div class="flex items-center justify-center gap-4 pb-5">
       <button
-        *ngFor="let slide of slides; let i = index"
+        aria-label="Banner anterior"
+        class="lg:hidden w-9 h-9 rounded-full border border-white/25 bg-white/10 text-white active:scale-95 transition-all flex items-center justify-center"
         type="button"
-        role="tab"
-        [attr.aria-selected]="activeSlideIndex === i"
-        [attr.aria-label]="'Ir al banner ' + (i + 1) + ': ' + slide.titlePrefix + ' ' + slide.titleAccent"
-        (click)="goToSlide(i)"
-        [ngClass]="
-          activeSlideIndex === i
-            ? 'w-12 h-2.5 bg-white/25'
-            : 'w-2.5 h-2.5 bg-white/35 hover:bg-white/70'
-        "
-        class="relative rounded-full overflow-hidden transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-light"
+        (click)="prevSlide()"
       >
-        <span
-          *ngIf="activeSlideIndex === i"
-          class="hero-progress-bar absolute inset-0 rounded-full bg-gold-light"
-          [class.is-paused]="isPaused"
-          (animationend)="onProgressEnd()"
-        ></span>
+        <span class="material-symbols-outlined text-xl">chevron_left</span>
+      </button>
+
+      <div class="flex items-center gap-2" role="tablist" aria-label="Seleccionar banner">
+        <button
+          *ngFor="let slide of slides; let i = index"
+          type="button"
+          role="tab"
+          [attr.aria-selected]="activeSlideIndex === i"
+          [attr.aria-label]="'Ir al banner ' + (i + 1) + ': ' + slide.titlePrefix + ' ' + slide.titleAccent"
+          (click)="goToSlide(i)"
+          [ngClass]="
+            activeSlideIndex === i
+              ? 'w-12 h-2.5 bg-white/25'
+              : 'w-2.5 h-2.5 bg-white/35 hover:bg-white/70'
+          "
+          class="relative rounded-full overflow-hidden transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-light"
+        >
+          <span
+            *ngIf="activeSlideIndex === i"
+            class="hero-progress-bar absolute inset-0 rounded-full bg-gold-light"
+            [class.is-paused]="isPaused"
+            (animationend)="onProgressEnd()"
+          ></span>
+        </button>
+      </div>
+
+      <button
+        aria-label="Siguiente banner"
+        class="lg:hidden w-9 h-9 rounded-full border border-white/25 bg-white/10 text-white active:scale-95 transition-all flex items-center justify-center"
+        type="button"
+        (click)="nextSlide()"
+      >
+        <span class="material-symbols-outlined text-xl">chevron_right</span>
       </button>
     </div>
 
-    <button
-      aria-label="Siguiente banner"
-      class="lg:hidden w-9 h-9 rounded-full border border-white/25 bg-white/10 text-white active:scale-95 transition-all flex items-center justify-center"
-      type="button"
-      (click)="nextSlide()"
-    >
-      <span class="material-symbols-outlined text-xl">chevron_right</span>
-    </button>
+    <!-- Bottom trust & quick-nav bar -->
+    <div class="border-t border-white/15 pt-4 grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5">
+      <button
+        type="button"
+        (click)="goToSlide(1)"
+        [ngClass]="activeSlideIndex === 1 ? 'bg-white/[0.12] border-gold-light/50' : 'bg-white/[0.04] border-white/10'"
+        class="group flex items-center gap-3 rounded-xl px-3.5 py-2.5 border hover:bg-white/[0.1] hover:border-gold-light/40 transition-all text-left cursor-pointer"
+      >
+        <span class="w-9 h-9 rounded-lg bg-gold-light/15 text-gold-light flex items-center justify-center flex-shrink-0">
+          <span class="material-symbols-outlined text-xl">account_balance</span>
+        </span>
+        <span class="min-w-0">
+          <span class="block text-xs sm:text-sm font-bold text-white truncate">Contabilidad General</span>
+          <span class="block text-[11px] text-white/65 truncate">Estados financieros claros</span>
+        </span>
+      </button>
+
+      <button
+        type="button"
+        (click)="goToSlide(2)"
+        [ngClass]="activeSlideIndex === 2 ? 'bg-white/[0.12] border-gold-light/50' : 'bg-white/[0.04] border-white/10'"
+        class="group flex items-center gap-3 rounded-xl px-3.5 py-2.5 border hover:bg-white/[0.1] hover:border-gold-light/40 transition-all text-left cursor-pointer"
+      >
+        <span class="w-9 h-9 rounded-lg bg-gold-light/15 text-gold-light flex items-center justify-center flex-shrink-0">
+          <span class="material-symbols-outlined text-xl">request_quote</span>
+        </span>
+        <span class="min-w-0">
+          <span class="block text-xs sm:text-sm font-bold text-white truncate">Impuestos y DGI</span>
+          <span class="block text-[11px] text-white/65 truncate">Renta e ITBMS al día</span>
+        </span>
+      </button>
+
+      <button
+        type="button"
+        (click)="goToSlide(4)"
+        [ngClass]="activeSlideIndex === 4 ? 'bg-white/[0.12] border-gold-light/50' : 'bg-white/[0.04] border-white/10'"
+        class="group flex items-center gap-3 rounded-xl px-3.5 py-2.5 border hover:bg-white/[0.1] hover:border-gold-light/40 transition-all text-left cursor-pointer"
+      >
+        <span class="w-9 h-9 rounded-lg bg-gold-light/15 text-gold-light flex items-center justify-center flex-shrink-0">
+          <span class="material-symbols-outlined text-xl">badge</span>
+        </span>
+        <span class="min-w-0">
+          <span class="block text-xs sm:text-sm font-bold text-white truncate">Planilla y SIPE</span>
+          <span class="block text-[11px] text-white/65 truncate">Cuotas CSS y prestaciones</span>
+        </span>
+      </button>
+
+      <button
+        type="button"
+        (click)="goToSlide(5)"
+        [ngClass]="activeSlideIndex === 5 ? 'bg-white/[0.12] border-gold-light/50' : 'bg-white/[0.04] border-white/10'"
+        class="group flex items-center gap-3 rounded-xl px-3.5 py-2.5 border hover:bg-white/[0.1] hover:border-gold-light/40 transition-all text-left cursor-pointer"
+      >
+        <span class="w-9 h-9 rounded-lg bg-gold-light/15 text-gold-light flex items-center justify-center flex-shrink-0">
+          <span class="material-symbols-outlined text-xl">verified_user</span>
+        </span>
+        <span class="min-w-0">
+          <span class="block text-xs sm:text-sm font-bold text-white truncate">Auditoría y Control</span>
+          <span class="block text-[11px] text-white/65 truncate">Respaldo de CPA Idóneo</span>
+        </span>
+      </button>
+    </div>
   </div>
 </section>

@@ -50,6 +50,13 @@
   mask-image: linear-gradient(to right, transparent 0%, #000 55%, #000 100%);
 }
 
+@media (max-width: 1023px) {
+  .hero-slide:not(.is-active) {
+    height: 0;
+    overflow: hidden;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-slide,
   .hero-slide.is-active {

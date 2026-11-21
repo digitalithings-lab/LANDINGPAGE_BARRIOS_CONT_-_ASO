@@ -1,13 +1,24 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html'
 })
-export class ContactComponent {
+export class ContactComponent implements AfterViewInit {
   formSubmitted = false;
   mailtoUrl = '';
   whatsappFallbackUrl = '';
+
+  ngAfterViewInit(): void {
+    const id = 'sk-instagram-widget-script';
+    if (!document.getElementById(id)) {
+      const script = document.createElement('script');
+      script.id = id;
+      script.src = 'https://widgets.sociablekit.com/instagram-feed/widget.js';
+      script.defer = true;
+      document.body.appendChild(script);
+    }
+  }
 
   contactForm = {
     fullName: '',

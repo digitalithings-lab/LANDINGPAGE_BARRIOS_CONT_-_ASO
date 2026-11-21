@@ -35,6 +35,18 @@ body {
   display: none;
 }
 
+.instagram-feed-scale {
+  width: 530px;
+  zoom: 0.7;
+}
+
+@media (max-width: 440px) {
+  .instagram-feed-scale {
+    width: 100%;
+    zoom: 1;
+  }
+}
+
 /* Dark Mode Overrides (Prestige Ledger) */
 html.dark {
   color-scheme: dark;

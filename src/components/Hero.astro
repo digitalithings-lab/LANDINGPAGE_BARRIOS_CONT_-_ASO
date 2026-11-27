@@ -1,0 +1,594 @@
+---
+interface HeroSlide {
+  id: string;
+  isBrandSlide?: boolean;
+  eyebrow: string;
+  titlePrefix: string;
+  titleAccent: string;
+  description: string;
+  secondaryParagraph?: string;
+  tagline?: string;
+  whatsappUrl: string;
+  icon: string;
+  number: string;
+}
+
+const heroConsultantImageUrl = '/assets/hero-consultant.png';
+const sealBadgeUrl = '/assets/favicon.png';
+const autoplayIntervalMs = 5000;
+
+const slides: HeroSlide[] = [
+  {
+    id: 'aliado-estrategico',
+    isBrandSlide: true,
+    eyebrow: 'ASESORÍA CONTABLE Y FISCAL EN PANAMÁ',
+    titlePrefix: 'Tu empresa merece más que un servicio contable.',
+    titleAccent: 'Merece un aliado estratégico.',
+    description:
+      'En Barrios Contadores & Asociados trabajamos para que tengas el control de tus finanzas, cumplas con tus obligaciones y tomes decisiones respaldadas por información confiable.',
+    secondaryParagraph:
+      'Nosotros nos ocupamos de tus números, tú enfócate en hacer crecer tu negocio.',
+    tagline: 'Tu aliado contable de confianza.',
+    whatsappUrl:
+      'https://wa.me/50762272263?text=Hola,%20deseo%20agendar%20una%20consulta%20contable%20con%20Barrios%20Contadores%20%26%20Asociados',
+    icon: 'verified',
+    number: '00',
+  },
+  {
+    id: 'contabilidad-general',
+    eyebrow: 'CONTABILIDAD EMPRESARIAL',
+    titlePrefix: 'Contabilidad',
+    titleAccent: 'general',
+    description:
+      'Gestionamos y organizamos la información contable de tu negocio, elaborando registros, estados financieros y reportes que te permiten conocer la situación económica de tu empresa y tomar mejores decisiones.',
+    whatsappUrl:
+      'https://wa.me/50762272263?text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Contabilidad%20general',
+    icon: 'account_balance',
+    number: '01',
+  },
+  {
+    id: 'impuestos-asesoria-fiscal',
+    eyebrow: 'CUMPLIMIENTO TRIBUTARIO',
+    titlePrefix: 'Impuestos y',
+    titleAccent: 'asesoría fiscal',
+    description:
+      'Brindamos asesoramiento y gestión de obligaciones tributarias, declaraciones de renta, ITBMS y trámites ante la DGI, procurando el cumplimiento oportuno de las disposiciones fiscales vigentes en Panamá.',
+    whatsappUrl:
+      'https://wa.me/50762272263?text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Impuestos%20y%20asesor%C3%ADa%20fiscal',
+    icon: 'request_quote',
+    number: '02',
+  },
+  {
+    id: 'asesoramiento-financiero',
+    eyebrow: 'ESTRATEGIA Y RENTABILIDAD',
+    titlePrefix: 'Asesoramiento',
+    titleAccent: 'financiero',
+    description:
+      'Ayudamos a empresas y emprendedores a analizar sus finanzas, controlar sus ingresos y gastos, elaborar presupuestos y desarrollar estrategias que fortalezcan su rentabilidad y crecimiento.',
+    whatsappUrl:
+      'https://wa.me/50762272263?text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Asesoramiento%20financiero',
+    icon: 'trending_up',
+    number: '03',
+  },
+  {
+    id: 'planilla-recursos-humanos',
+    eyebrow: 'GESTIÓN LABORAL EN PANAMÁ',
+    titlePrefix: 'Gestión de planilla y',
+    titleAccent: 'recursos humanos',
+    description:
+      'Administramos los procesos de planilla, cálculos salariales, prestaciones laborales, décimo tercer mes, cuotas de la CSS y presentación de planillas ante el SIPE, garantizando un manejo ordenado y oportuno de las obligaciones laborales.',
+    whatsappUrl:
+      'https://wa.me/50762272263?text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Gesti%C3%B3n%20de%20planilla%20y%20recursos%20humanos',
+    icon: 'badge',
+    number: '04',
+  },
+  {
+    id: 'auditoria-control-interno',
+    eyebrow: 'TRANSPARENCIA Y CONFIANZA',
+    titlePrefix: 'Auditoría y',
+    titleAccent: 'control interno',
+    description:
+      'Evaluamos la información financiera, los procesos administrativos y los controles internos de las organizaciones para identificar riesgos, detectar oportunidades de mejora y fortalecer la transparencia y confiabilidad de sus operaciones.',
+    whatsappUrl:
+      'https://wa.me/50762272263?text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Auditor%C3%ADa%20y%20control%20interno',
+    icon: 'verified_user',
+    number: '05',
+  },
+];
+
+const quickNavItems = [
+  { index: 1, icon: 'account_balance', title: 'Contabilidad General', subtitle: 'Estados financieros claros' },
+  { index: 2, icon: 'request_quote', title: 'Impuestos y DGI', subtitle: 'Renta e ITBMS al día' },
+  { index: 4, icon: 'badge', title: 'Planilla y SIPE', subtitle: 'Cuotas CSS y prestaciones' },
+  { index: 5, icon: 'verified_user', title: 'Auditoría y Control', subtitle: 'Respaldo de CPA Idóneo' },
+];
+---
+
+<section
+  aria-label="Servicios y propuesta de valor de Barrios Contadores y Asociados"
+  aria-roledescription="carousel"
+  class="relative overflow-hidden bg-primary outline-none pt-20 sm:pt-28 lg:pt-28 pb-4 sm:pb-8 min-h-[100svh] flex flex-col justify-between"
+  id="inicio"
+  tabindex="0"
+  style={`--hero-interval: ${autoplayIntervalMs}ms`}
+>
+  <!-- Banner Background: wine gradient (dark mode: deep charcoal-wine) with brand slashes -->
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#5e1326] via-[#6d1d30] to-[#2e0812] dark:from-[#2b1118] dark:via-[#201316] dark:to-[#141011]"></div>
+    <!-- Dot texture on the right half -->
+    <div class="absolute inset-0 hero-dots-pattern"></div>
+    <!-- Diagonal brand slashes -->
+    <div class="hidden md:block absolute top-0 right-[34%] w-24 h-[160%] -translate-y-[20%] -skew-x-[18deg] bg-gradient-to-b from-gold-light/25 via-gold-deep/20 to-transparent"></div>
+    <div class="hidden md:block absolute top-0 right-[27%] w-6 h-[160%] -translate-y-[20%] -skew-x-[18deg] bg-gradient-to-b from-gold-light/30 via-gold-deep/10 to-transparent"></div>
+    <!-- Soft glows -->
+    <div class="absolute -top-32 -right-24 w-[480px] h-[480px] rounded-full bg-gold-light/10 blur-3xl"></div>
+    <div class="absolute -bottom-40 -left-24 w-[440px] h-[440px] rounded-full bg-black/25 blur-3xl"></div>
+  </div>
+
+  <!-- Desktop Left Arrow -->
+  <button
+    aria-label="Banner anterior"
+    class="hidden lg:flex absolute left-4 xl:left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-white/25 bg-white/10 hover:bg-gold-light hover:text-[#400013] hover:border-gold-light backdrop-blur-md text-white active:scale-95 shadow-md transition-all duration-200 items-center justify-center cursor-pointer"
+    type="button"
+    data-hero-prev
+  >
+    <span class="material-symbols-outlined text-3xl">chevron_left</span>
+  </button>
+
+  <!-- Desktop Right Arrow -->
+  <button
+    aria-label="Siguiente banner"
+    class="hidden lg:flex absolute right-4 xl:right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-white/25 bg-white/10 hover:bg-gold-light hover:text-[#400013] hover:border-gold-light backdrop-blur-md text-white active:scale-95 shadow-md transition-all duration-200 items-center justify-center cursor-pointer"
+    type="button"
+    data-hero-next
+  >
+    <span class="material-symbols-outlined text-3xl">chevron_right</span>
+  </button>
+
+  <!-- Carousel Stage -->
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-24 relative z-10 w-full my-auto py-2 sm:py-4">
+    <div class="grid grid-cols-1 items-stretch lg:min-h-[430px]">
+      {slides.map((slide, i) => (
+        <div
+          data-hero-slide={i}
+          class:list={[
+            'hero-slide w-full grid lg:grid-cols-12 gap-4 sm:gap-8 lg:gap-12 items-center content-start lg:content-center',
+            i === 0 && 'is-active',
+          ]}
+          role="group"
+          aria-roledescription="slide"
+          aria-hidden={i !== 0 ? 'true' : 'false'}
+          aria-label={`Banner ${i + 1} de ${slides.length}: ${slide.titlePrefix} ${slide.titleAccent}`}
+        >
+          <!-- Left Column: Copy & CTA -->
+          <div class="lg:col-span-7 flex flex-col space-y-2.5 sm:space-y-4">
+            <div class="flex items-center gap-2.5 sm:gap-3">
+              <span aria-hidden="true" class="inline-block w-[3px] h-3.5 sm:h-4 -skew-x-[18deg] bg-gold-light"></span>
+              <span class="text-[11px] sm:text-[13px] uppercase font-semibold tracking-[0.16em] sm:tracking-[0.2em] text-gold-light">
+                {slide.eyebrow}
+              </span>
+            </div>
+
+            {slide.isBrandSlide ? (
+              <h1 class="font-display-large text-[22px] sm:text-[34px] lg:text-[38px] xl:text-[42px] text-white leading-[1.15] tracking-tight font-bold">
+                {slide.titlePrefix}
+                <span class="block mt-1 text-gold-light">{slide.titleAccent}</span>
+              </h1>
+            ) : (
+              <h2 class="font-display-large text-[28px] sm:text-[42px] lg:text-[48px] xl:text-[52px] text-white leading-[1.1] tracking-tight font-bold">
+                {slide.titlePrefix}
+                <span class="text-gold-light"> {slide.titleAccent}</span>
+              </h2>
+            )}
+
+            <p class="text-[13px] sm:text-base lg:text-lg text-white/80 max-w-2xl leading-snug sm:leading-relaxed">
+              {slide.description}
+            </p>
+
+            {slide.isBrandSlide && (
+              <div class="border-l-[3px] border-gold-light pl-3 sm:pl-4 py-0.5 space-y-1 max-w-2xl">
+                <p class="text-xs sm:text-base font-semibold text-white leading-snug">
+                  {slide.secondaryParagraph}
+                </p>
+                <p class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-gold-light tracking-tight">
+                  <span class="material-symbols-outlined text-sm sm:text-base" style="font-variation-settings: 'FILL' 1;">verified</span>
+                  <span>{slide.tagline}</span>
+                </p>
+              </div>
+            )}
+
+            <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-1">
+              <a
+                data-hero-cta
+                class="inline-flex items-center justify-center gap-2 bg-gradient-to-br from-gold-light to-gold-deep text-[#400013] px-4 sm:px-7 py-2.5 sm:py-3.5 rounded-full text-xs sm:text-base font-bold shadow-lg shadow-black/20 hover:shadow-xl hover:scale-[1.02] active:scale-100 transition-all duration-200"
+                href={slide.whatsappUrl}
+                tabindex={i === 0 ? undefined : -1}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <svg aria-hidden="true" class="w-4 h-4 sm:w-5 sm:h-5 fill-current flex-shrink-0" viewBox="0 0 24 24">
+                  <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.53c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.74-.66-1.25-1.48-1.39-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.58.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.3" />
+                </svg>
+                <span>Agendar cita gratis</span>
+              </a>
+
+              <a
+                data-hero-cta
+                class="inline-flex items-center justify-center gap-1.5 sm:gap-2 border border-white/35 hover:bg-white/10 hover:border-white/60 text-white px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-full text-xs sm:text-base font-semibold transition-all duration-200"
+                tabindex={i === 0 ? undefined : -1}
+                href="#servicios"
+              >
+                <span class="material-symbols-outlined text-base sm:text-xl">description</span>
+                <span>Explorar Servicios</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Visual -->
+          <div class="lg:col-span-5 relative flex items-center justify-center py-1 lg:py-0 lg:h-[365px] xl:h-[385px]">
+            {slide.isBrandSlide ? (
+              <div class="relative w-full max-w-[165px] sm:max-w-[235px] lg:max-w-[285px] xl:max-w-[300px] mx-auto">
+                <div
+                  aria-hidden="true"
+                  class="absolute -top-2.5 -right-2.5 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-gold-light to-gold-deep opacity-90 shadow-md z-0"
+                ></div>
+                <div
+                  aria-hidden="true"
+                  class="absolute -bottom-2.5 -left-2.5 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/10 z-0"
+                ></div>
+
+                <div class="relative z-10 rounded-t-[160px] rounded-b-3xl overflow-hidden bg-gradient-to-b from-surface-container-low via-surface-container to-primary-fixed/40 border border-outline-variant/40 shadow-2xl pt-3 px-2">
+                  <img
+                    alt="Lic. Roger Barrios - Contador Público Autorizado"
+                    class="w-full h-auto object-contain object-bottom mx-auto block relative z-10 drop-shadow-lg"
+                    fetchpriority="high"
+                    decoding="async"
+                    src={heroConsultantImageUrl}
+                  />
+                  <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-primary via-primary/85 to-transparent z-20 flex flex-col justify-end p-4">
+                    <span class="text-white font-bold text-base sm:text-lg leading-tight tracking-tight">Lic. Roger Barrios</span>
+                    <span class="text-primary-fixed text-[11px] sm:text-xs font-medium mt-0.5 leading-snug">
+                      Fundador de Barrios Contadores &amp; Asociados
+                    </span>
+                  </div>
+                </div>
+
+                <div class="absolute top-4 sm:top-8 -left-3 sm:-left-6 z-30 bg-surface-container-lowest/95 backdrop-blur-md px-2.5 py-1 sm:px-3.5 sm:py-2 rounded-full border border-outline-variant/40 shadow-md flex items-center gap-1 sm:gap-2">
+                  <span class="material-symbols-outlined text-primary text-xs sm:text-base" style="font-variation-settings: 'FILL' 1;">verified</span>
+                  <span class="text-[10px] sm:text-xs font-bold text-on-surface tracking-tight whitespace-nowrap">Contador Público Autorizado</span>
+                </div>
+
+                <div class="absolute bottom-14 sm:bottom-20 -right-3 sm:-right-5 z-30 bg-gradient-to-br from-gold-light to-gold-deep text-on-primary-fixed px-2.5 py-1.5 sm:px-4 sm:py-2.5 rounded-2xl shadow-lg border border-white/40 flex items-center gap-1.5 sm:gap-2">
+                  <img
+                    alt="Sello Barrios Contadores"
+                    class="w-6 h-6 sm:w-8 sm:h-8 rounded-full object-contain bg-white/90 p-0.5 shadow-xs flex-shrink-0"
+                    src={sealBadgeUrl}
+                  />
+                  <div class="flex flex-col leading-tight">
+                    <span class="text-[11px] sm:text-sm font-extrabold tracking-tight">CPA Idóneo</span>
+                    <span class="text-[9px] sm:text-[11px] font-semibold opacity-90">Respaldo ante DGI</span>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div aria-hidden="true" class="relative w-[150px] h-[150px] sm:w-[240px] sm:h-[240px] lg:w-[320px] lg:h-[320px] xl:w-[350px] xl:h-[350px] flex items-center justify-center">
+                <div class="absolute inset-0 rounded-full border border-white/10"></div>
+                <div class="absolute inset-3.5 sm:inset-6 lg:inset-7 rounded-full border border-gold-light/25"></div>
+                <div class="absolute inset-7 sm:inset-12 lg:inset-16 rounded-full bg-gradient-to-br from-gold-light to-gold-deep shadow-2xl shadow-black/30"></div>
+                <span
+                  class="material-symbols-outlined relative text-[48px] sm:text-[78px] lg:text-[100px] xl:text-[116px] text-[#5e1326]"
+                  style="font-variation-settings: 'FILL' 1, 'wght' 500;"
+                >
+                  {slide.icon}
+                </span>
+                <span class="absolute -bottom-1 right-0 sm:bottom-1 sm:right-2 font-display-large text-3xl sm:text-5xl lg:text-7xl font-extrabold text-white/10 leading-none select-none tabular-nums">
+                  {slide.number}
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Bottom controls + trust bar -->
+  <div class="relative z-20 max-w-7xl mx-auto px-5 sm:px-8 lg:px-24 w-full pt-2 sm:pt-4">
+    <!-- Mobile arrows + pagination dots with timer bar -->
+    <div class="flex items-center justify-center gap-4 pb-3 sm:pb-5">
+      <button
+        aria-label="Banner anterior"
+        class="lg:hidden w-9 h-9 rounded-full border border-white/25 bg-white/10 text-white active:scale-95 transition-all flex items-center justify-center"
+        type="button"
+        data-hero-prev
+      >
+        <span class="material-symbols-outlined text-xl">chevron_left</span>
+      </button>
+
+      <div class="flex items-center gap-2" role="tablist" aria-label="Seleccionar banner">
+        {slides.map((slide, i) => (
+          <button
+            type="button"
+            role="tab"
+            data-hero-dot={i}
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-label={`Ir al banner ${i + 1}: ${slide.titlePrefix} ${slide.titleAccent}`}
+            class:list={[
+              'relative rounded-full overflow-hidden transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-light',
+              i === 0 ? 'w-12 h-2.5 bg-white/25' : 'w-2.5 h-2.5 bg-white/35 hover:bg-white/70',
+            ]}
+          >
+            <span
+              data-hero-progress={i}
+              class:list={[
+                'hero-progress-bar absolute inset-0 rounded-full bg-gold-light',
+                i !== 0 && 'hidden',
+              ]}
+            ></span>
+          </button>
+        ))}
+      </div>
+
+      <button
+        aria-label="Siguiente banner"
+        class="lg:hidden w-9 h-9 rounded-full border border-white/25 bg-white/10 text-white active:scale-95 transition-all flex items-center justify-center"
+        type="button"
+        data-hero-next
+      >
+        <span class="material-symbols-outlined text-xl">chevron_right</span>
+      </button>
+    </div>
+
+    <!-- Bottom trust & quick-nav bar -->
+    <div class="border-t border-white/15 pt-3 sm:pt-4 grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3.5">
+      {quickNavItems.map((item) => (
+        <button
+          type="button"
+          data-hero-quick={item.index}
+          class="group flex items-center gap-3 rounded-xl px-3.5 py-2.5 border bg-white/[0.04] border-white/10 hover:bg-white/[0.1] hover:border-gold-light/40 transition-all text-left cursor-pointer"
+        >
+          <span class="w-9 h-9 rounded-lg bg-gold-light/15 text-gold-light flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-xl">{item.icon}</span>
+          </span>
+          <span class="min-w-0">
+            <span class="block text-xs sm:text-sm font-bold text-white truncate">{item.title}</span>
+            <span class="block text-[11px] text-white/65 truncate">{item.subtitle}</span>
+          </span>
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes heroProgressFill {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  .hero-slide {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    pointer-events: none;
+    z-index: 0;
+    transition:
+      opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0.45s;
+  }
+
+  .hero-slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+    z-index: 10;
+    transition:
+      opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0s;
+  }
+
+  .hero-progress-bar {
+    transform-origin: left center;
+    animation: heroProgressFill var(--hero-interval, 5000ms) linear forwards;
+  }
+
+  .hero-progress-bar.is-paused {
+    animation-play-state: paused;
+  }
+
+  .hero-dots-pattern {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 22px 22px;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 55%, #000 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 55%, #000 100%);
+  }
+
+  @media (max-width: 1023px) {
+    .hero-slide:not(.is-active) {
+      height: 0;
+      overflow: hidden;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-slide,
+    .hero-slide.is-active {
+      transition: none;
+      transform: none;
+    }
+
+    .hero-progress-bar {
+      animation: none;
+      transform: scaleX(1);
+    }
+  }
+</style>
+
+<script>
+  const heroSection = document.getElementById('inicio');
+  const slideEls = Array.from(document.querySelectorAll<HTMLElement>('[data-hero-slide]'));
+  const dotEls = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-hero-dot]'));
+  const progressEls = Array.from(document.querySelectorAll<HTMLElement>('[data-hero-progress]'));
+  const quickEls = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-hero-quick]'));
+
+  let activeSlideIndex = 0;
+  let isPaused = false;
+  let touchStartX: number | null = null;
+  let touchStartY: number | null = null;
+
+  function renderHero(index: number) {
+    activeSlideIndex = (index + slideEls.length) % slideEls.length;
+
+    slideEls.forEach((slide, i) => {
+      const active = i === activeSlideIndex;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+      slide.querySelectorAll<HTMLElement>('[data-hero-cta]').forEach((cta) => {
+        if (active) {
+          cta.removeAttribute('tabindex');
+        } else {
+          cta.setAttribute('tabindex', '-1');
+        }
+      });
+    });
+
+    dotEls.forEach((dot, i) => {
+      const active = i === activeSlideIndex;
+      dot.setAttribute('aria-selected', String(active));
+      dot.classList.toggle('w-12', active);
+      dot.classList.toggle('bg-white/25', active);
+      dot.classList.toggle('w-2.5', !active);
+      dot.classList.toggle('bg-white/35', !active);
+      dot.classList.toggle('hover:bg-white/70', !active);
+    });
+
+    progressEls.forEach((bar, i) => {
+      const active = i === activeSlideIndex;
+      bar.classList.toggle('hidden', !active);
+      bar.classList.toggle('is-paused', isPaused);
+      if (active) {
+        bar.style.animation = 'none';
+        void bar.offsetWidth;
+        bar.style.animation = '';
+      }
+    });
+
+    quickEls.forEach((btn) => {
+      const targetIndex = Number(btn.dataset.heroQuick);
+      const active = targetIndex === activeSlideIndex;
+      btn.classList.toggle('bg-white/[0.12]', active);
+      btn.classList.toggle('border-gold-light/50', active);
+      btn.classList.toggle('bg-white/[0.04]', !active);
+      btn.classList.toggle('border-white/10', !active);
+    });
+  }
+
+  function setPaused(paused: boolean) {
+    isPaused = paused;
+    progressEls.forEach((bar) => bar.classList.toggle('is-paused', paused));
+  }
+
+  function nextSlide() {
+    renderHero(activeSlideIndex + 1);
+  }
+
+  function prevSlide() {
+    renderHero(activeSlideIndex - 1);
+  }
+
+  document.querySelectorAll('[data-hero-next]').forEach((btn) => btn.addEventListener('click', nextSlide));
+  document.querySelectorAll('[data-hero-prev]').forEach((btn) => btn.addEventListener('click', prevSlide));
+
+  dotEls.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      renderHero(Number(dot.dataset.heroDot));
+    });
+  });
+
+  quickEls.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      renderHero(Number(btn.dataset.heroQuick));
+    });
+  });
+
+  progressEls.forEach((bar) => {
+    bar.addEventListener('animationend', () => {
+      nextSlide();
+    });
+  });
+
+  if (heroSection) {
+    heroSection.addEventListener('mouseenter', () => setPaused(true));
+    heroSection.addEventListener('mouseleave', () => setPaused(false));
+    heroSection.addEventListener('focusin', () => setPaused(true));
+    heroSection.addEventListener('focusout', () => setPaused(false));
+
+    heroSection.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        nextSlide();
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        prevSlide();
+      }
+    });
+
+    heroSection.addEventListener(
+      'touchstart',
+      (event) => {
+        setPaused(true);
+        if (event.touches.length !== 1) {
+          touchStartX = null;
+          touchStartY = null;
+          return;
+        }
+        touchStartX = event.changedTouches[0]?.clientX ?? null;
+        touchStartY = event.changedTouches[0]?.clientY ?? null;
+      },
+      { passive: true },
+    );
+
+    heroSection.addEventListener(
+      'touchend',
+      (event) => {
+        if (touchStartX !== null && touchStartY !== null) {
+          const endX = event.changedTouches[0]?.clientX ?? touchStartX;
+          const endY = event.changedTouches[0]?.clientY ?? touchStartY;
+          const deltaX = endX - touchStartX;
+          const deltaY = endY - touchStartY;
+
+          if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+            if (deltaX < 0) {
+              nextSlide();
+            } else {
+              prevSlide();
+            }
+          }
+        }
+        touchStartX = null;
+        touchStartY = null;
+        setPaused(false);
+      },
+      { passive: true },
+    );
+
+    heroSection.addEventListener(
+      'touchcancel',
+      () => {
+        touchStartX = null;
+        touchStartY = null;
+        setPaused(false);
+      },
+      { passive: true },
+    );
+  }
+</script>

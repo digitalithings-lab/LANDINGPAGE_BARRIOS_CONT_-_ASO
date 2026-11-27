@@ -1,0 +1,241 @@
+---
+const services = [
+  {
+    title: 'Servicios Contables',
+    description: 'Gestión meticulosa del flujo contable para empresas de servicios, retail e industria.',
+    icon: 'account_balance',
+    iconBgClass: 'bg-primary-fixed text-on-primary-fixed',
+    features: [
+      'Estados financieros bajo normas NIIF',
+      'Contabilidad general mensual y anual',
+      'Registro contable de compras y ventas',
+      'Control y valorización de inventarios',
+    ],
+    whatsappUrl: 'https://wa.me/50762272263?text=Hola,%20me%20interesan%20los%20Servicios%20Contables',
+  },
+  {
+    title: 'Trámites Legales & Aperturas',
+    description: 'Formalización ágil ante entidades públicas para iniciar operaciones con plena validez.',
+    icon: 'gavel',
+    iconBgClass: 'bg-secondary-fixed text-on-secondary-fixed',
+    features: [
+      'Aviso de operación en Panamá Emprende',
+      'Inscripción y constitución de sociedades',
+      'Obtención de Personería Jurídica',
+      'Actualizaciones de directiva y cierres',
+    ],
+    whatsappUrl: 'https://wa.me/50762272263?text=Hola,%20requiero%20Tr%C3%A1mites%20Legales%20y%20Aperturas',
+  },
+  {
+    title: 'Declaraciones Fiscales',
+    description: 'Protección tributaria con cálculo riguroso de impuestos para evitar contingencias.',
+    icon: 'request_quote',
+    iconBgClass: 'bg-primary-fixed text-on-primary-fixed',
+    features: [
+      'Declaración jurada de renta (DGI)',
+      'Cálculo y presentación de ITBMS 7%',
+      'Presentación de Planilla 03 anual',
+      'Declaración municipal e informe de compras',
+    ],
+    whatsappUrl: 'https://wa.me/50762272263?text=Hola,%20necesito%20apoyo%20con%20Declaraciones%20Fiscales',
+  },
+  {
+    title: 'Gestión Laboral',
+    description: 'Manejo estructurado del personal con apego estricto al Código de Trabajo de Panamá.',
+    icon: 'badge',
+    iconBgClass: 'bg-secondary-fixed text-on-secondary-fixed',
+    features: [
+      'Confección de planillas quincenales',
+      'Cálculo de liquidaciones y prestaciones',
+      'Gestión ante Caja de Seguro Social (CSS)',
+      'Administración de plataforma SIPE',
+    ],
+    whatsappUrl: 'https://wa.me/50762272263?text=Hola,%20deseo%20asesor%C3%ADa%20en%20Gesti%C3%B3n%20Laboral',
+  },
+  {
+    title: 'Servicios Digitales & Facturación',
+    description: 'Modernización y transformación digital de tu operativa contable obligatoria.',
+    icon: 'point_of_sale',
+    iconBgClass: 'bg-primary-fixed text-on-primary-fixed',
+    features: [
+      'Implementación de Facturación Electrónica',
+      'Soporte permanente en e-Tax 2.0',
+      'Habilitación y enlace del PAC',
+      'Asistente contable virtual para dudas',
+    ],
+    whatsappUrl: 'https://wa.me/50762272263?text=Hola,%20deseo%20implementar%20Facturaci%C3%B3n%20Electr%C3%B3nica',
+  },
+];
+---
+
+<section class="bg-surface-container-low relative overflow-hidden py-10" id="servicios">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
+      <div class="max-w-2xl space-y-3">
+        <span class="px-4 py-1.5 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-bold uppercase tracking-wider inline-block">
+          Portafolio Integral
+        </span>
+        <h2 class="font-headline-large text-3xl lg:text-4xl font-bold text-on-surface">Nuestros servicios</h2>
+        <p class="text-base text-on-surface-variant">
+          Soluciones integrales de alto estándar para que tu negocio funcione sin contratiempos legales ni fiscales.
+        </p>
+      </div>
+      <div class="flex items-center gap-3 self-end md:self-auto">
+        <button
+          aria-label="Servicio anterior"
+          data-services-prev
+          class="w-12 h-12 rounded-full border border-outline-variant/60 bg-surface-container-lowest text-on-surface hover:bg-primary hover:text-on-primary hover:border-primary active:scale-95 transition-all duration-200 flex items-center justify-center shadow-xs"
+          type="button"
+        >
+          <span class="material-symbols-outlined text-2xl">chevron_left</span>
+        </button>
+        <button
+          aria-label="Siguiente servicio"
+          data-services-next
+          class="w-12 h-12 rounded-full border border-outline-variant/60 bg-surface-container-lowest text-on-surface hover:bg-primary hover:text-on-primary hover:border-primary active:scale-95 transition-all duration-200 flex items-center justify-center shadow-xs"
+          type="button"
+        >
+          <span class="material-symbols-outlined text-2xl">chevron_right</span>
+        </button>
+      </div>
+    </div>
+
+    <div
+      id="services-track"
+      class="flex gap-6 overflow-x-auto scroll-smooth pb-4 pt-1 snap-x snap-mandatory no-scrollbar"
+    >
+      {services.map((service) => (
+        <div class="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 snap-start bg-surface-container-lowest rounded-3xl border border-outline-variant/40 p-8 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-200 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class:list={['w-12 h-12 rounded-2xl flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors duration-200', service.iconBgClass]}>
+              <span class="material-symbols-outlined text-2xl">{service.icon}</span>
+            </div>
+            <h3 class="font-headline-large text-xl font-bold text-on-surface group-hover:text-primary transition-colors">
+              {service.title}
+            </h3>
+            <p class="text-sm text-on-surface-variant leading-relaxed">
+              {service.description}
+            </p>
+            <ul class="space-y-2.5 pt-2">
+              {service.features.map((feat) => (
+                <li class="flex items-center gap-2.5 text-on-surface-variant text-sm">
+                  <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                  <span>{feat}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="pt-6 mt-6 border-t border-outline-variant/30">
+            <a
+              class="text-primary font-bold text-sm inline-flex items-center gap-1.5 group-hover:translate-x-1 transition-transform"
+              href={service.whatsappUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Consultar este servicio
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Pagination Dots Indicator -->
+    <div class="flex items-center justify-center gap-2.5 mt-8">
+      <button
+        aria-label="Página 1"
+        type="button"
+        data-services-page="0"
+        class="w-8 h-2.5 bg-primary rounded-full transition-all duration-200"
+      ></button>
+      <button
+        aria-label="Página 2"
+        type="button"
+        data-services-page="1"
+        class="w-2.5 h-2.5 bg-outline-variant hover:bg-primary/50 rounded-full transition-all duration-200"
+      ></button>
+    </div>
+
+    <!-- MD3 Extended Action Pill -->
+    <div class="text-center mt-6">
+      <a
+        class="inline-flex items-center gap-3 bg-secondary-fixed hover:bg-secondary-fixed-dim text-on-secondary-fixed px-9 py-4 rounded-full font-bold text-base shadow-sm hover:shadow-md transition-all duration-200"
+        href="https://wa.me/50762272263?text=Hola,%20solicito%20una%20cotizaci%C3%B3n%20completa%20de%20servicios"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <span class="material-symbols-outlined text-2xl">request_quote</span>
+        <span>Solicitar cotización de servicios</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById('services-track');
+  const pageButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-services-page]'));
+  let isPaused = false;
+
+  function setServicePage(page: number) {
+    pageButtons.forEach((btn, i) => {
+      const active = i === page;
+      btn.classList.toggle('w-8', active);
+      btn.classList.toggle('bg-primary', active);
+      btn.classList.toggle('w-2.5', !active);
+      btn.classList.toggle('bg-outline-variant', !active);
+      btn.classList.toggle('hover:bg-primary/50', !active);
+    });
+  }
+
+  document.querySelector('[data-services-prev]')?.addEventListener('click', () => {
+    track?.scrollBy({ left: -380, behavior: 'smooth' });
+  });
+
+  document.querySelector('[data-services-next]')?.addEventListener('click', () => {
+    track?.scrollBy({ left: 380, behavior: 'smooth' });
+  });
+
+  pageButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const page = Number(btn.dataset.servicesPage);
+      setServicePage(page);
+      if (track) {
+        track.scrollTo({ left: page === 0 ? 0 : track.scrollWidth, behavior: 'smooth' });
+      }
+    });
+  });
+
+  if (track) {
+    track.addEventListener(
+      'scroll',
+      () => {
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        if (maxScroll <= 0) return;
+        setServicePage(track.scrollLeft > maxScroll * 0.45 ? 1 : 0);
+      },
+      { passive: true },
+    );
+
+    track.addEventListener('mouseenter', () => (isPaused = true));
+    track.addEventListener('mouseleave', () => (isPaused = false));
+    track.addEventListener('focusin', () => (isPaused = true));
+    track.addEventListener('focusout', () => (isPaused = false));
+    track.addEventListener('touchstart', () => (isPaused = true), { passive: true });
+    track.addEventListener('touchend', () => (isPaused = false), { passive: true });
+
+    const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion) {
+      setInterval(() => {
+        if (isPaused) return;
+        const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 12;
+        if (atEnd) {
+          track.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          const firstCard = track.firstElementChild as HTMLElement | null;
+          const step = firstCard ? firstCard.offsetWidth + 24 : 380;
+          track.scrollBy({ left: step, behavior: 'smooth' });
+        }
+      }, 4000);
+    }
+  }
+</script>

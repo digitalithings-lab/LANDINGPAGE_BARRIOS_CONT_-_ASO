@@ -23,7 +23,7 @@
           >
             <div class="w-12 h-12 rounded-xl bg-whatsapp-green/10 flex items-center justify-center text-whatsapp-green group-hover:scale-105 transition-transform">
               <svg aria-hidden="true" class="w-7 h-7 fill-current text-whatsapp-green" viewBox="0 0 24 24">
-                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.53c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.74-.66-1.25-1.48-1.39-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.58.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.3"></path>
+                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.53c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.74-.66-1.25-1.48-1.39-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.58.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.3" />
               </svg>
             </div>
             <div>
@@ -74,7 +74,7 @@
         </div>
       </div>
 
-      <!-- MD3 Outlined Text Field Form -->
+      <!-- Consultation Form -->
       <div class="lg:col-span-7">
         <div class="bg-surface-container-lowest rounded-3xl border border-outline-variant/40 p-8 lg:p-10 shadow-sm">
           <div class="mb-6">
@@ -85,9 +85,9 @@
           </div>
 
           <div
-            *ngIf="formSubmitted"
+            id="contact-status"
             role="status"
-            class="mb-6 p-4 rounded-2xl bg-primary-fixed/60 border border-primary/30 text-on-primary-fixed flex flex-col gap-3"
+            class="hidden mb-6 p-4 rounded-2xl bg-primary-fixed/60 border border-primary/30 text-on-primary-fixed flex-col gap-3"
           >
             <div class="flex items-center justify-between gap-3">
               <div class="flex items-center gap-3">
@@ -97,26 +97,26 @@
                 </p>
               </div>
               <button
+                id="contact-status-close"
                 type="button"
                 aria-label="Cerrar aviso"
                 class="text-xs font-bold underline flex-shrink-0"
-                (click)="formSubmitted = false"
               >
                 Cerrar
               </button>
             </div>
             <div class="flex flex-wrap gap-2 pl-9">
               <a
-                *ngIf="mailtoUrl"
-                [href]="mailtoUrl"
+                id="contact-mailto-link"
+                href="#"
                 class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary text-on-primary text-xs font-bold hover:bg-primary-container transition-colors"
               >
                 <span class="material-symbols-outlined text-sm">mail</span>
                 <span>Abrir en correo</span>
               </a>
               <a
-                *ngIf="whatsappFallbackUrl"
-                [href]="whatsappFallbackUrl"
+                id="contact-wa-link"
+                href="#"
                 rel="noopener noreferrer"
                 target="_blank"
                 class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-whatsapp-green text-white text-xs font-bold hover:opacity-90 transition-opacity"
@@ -126,18 +126,11 @@
             </div>
           </div>
 
-          <form class="space-y-5" (ngSubmit)="submitConsultation()" ngNativeValidate>
-            <!-- Honeypot anti-spam (hidden from users) -->
+          <form id="contact-form" class="space-y-5">
+            <!-- Honeypot anti-spam -->
             <div class="hidden" aria-hidden="true">
               <label for="website">Sitio web</label>
-              <input
-                id="website"
-                name="website"
-                type="text"
-                tabindex="-1"
-                autocomplete="off"
-                [(ngModel)]="contactForm.website"
-              >
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
             </div>
 
             <!-- Name -->
@@ -149,13 +142,12 @@
                 class="w-full bg-surface-container-low border border-outline-variant rounded-2xl px-4 py-3.5 text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none"
                 id="full_name"
                 name="full_name"
-                [(ngModel)]="contactForm.fullName"
                 autocomplete="name"
                 maxlength="100"
                 placeholder="Ej: Lic. Roberto Méndez"
                 required
                 type="text"
-              >
+              />
             </div>
 
             <!-- Phone & Email Grid -->
@@ -165,7 +157,7 @@
                   <span class="inline-flex items-center gap-1.5">
                     <span>Teléfono / WhatsApp</span>
                     <svg aria-hidden="true" class="w-4 h-4 fill-current text-whatsapp-green inline" viewBox="0 0 24 24">
-                      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.53c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.74-.66-1.25-1.48-1.39-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.58.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.3"></path>
+                      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.53c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.74-.66-1.25-1.48-1.39-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.58.13.17 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.3" />
                     </svg>
                   </span>
                 </label>
@@ -173,14 +165,13 @@
                   class="w-full bg-surface-container-low border border-outline-variant rounded-2xl px-4 py-3.5 text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none"
                   id="phone"
                   name="phone"
-                  [(ngModel)]="contactForm.phone"
                   autocomplete="tel"
                   maxlength="25"
                   pattern="[0-9+\-\s()]{7,25}"
                   placeholder="+507 6000-0000"
                   required
                   type="tel"
-                >
+                />
               </div>
               <div>
                 <label class="block text-xs font-bold text-on-surface mb-1.5 uppercase tracking-wide" for="email">
@@ -190,13 +181,12 @@
                   class="w-full bg-surface-container-low border border-outline-variant rounded-2xl px-4 py-3.5 text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none"
                   id="email"
                   name="email"
-                  [(ngModel)]="contactForm.email"
                   autocomplete="email"
                   maxlength="120"
                   placeholder="ejemplo@negocio.com"
                   required
                   type="email"
-                >
+                />
               </div>
             </div>
 
@@ -209,9 +199,8 @@
                 class="w-full bg-surface-container-low border border-outline-variant rounded-2xl px-4 py-3.5 text-on-surface focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none"
                 id="service_interest"
                 name="service_interest"
-                [(ngModel)]="contactForm.serviceInterest"
               >
-                <option disabled value="">Selecciona una opción</option>
+                <option disabled selected value="">Selecciona una opción</option>
                 <option value="contabilidad">Servicios Contables Generales</option>
                 <option value="declaracion">Declaraciones de Renta &amp; ITBMS (DGI)</option>
                 <option value="tramites">Aviso de Operación &amp; Trámites Legales</option>
@@ -230,7 +219,6 @@
                 class="w-full bg-surface-container-low border border-outline-variant rounded-2xl px-4 py-3.5 text-on-surface placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none resize-none"
                 id="message"
                 name="message"
-                [(ngModel)]="contactForm.message"
                 maxlength="1000"
                 placeholder="Cuéntanos brevemente sobre tu negocio y cómo podemos ayudarte..."
                 rows="4"
@@ -252,7 +240,6 @@
 
     <!-- Instagram Feed: texto a la izquierda + card estilo celular a la derecha -->
     <div class="mt-14 pt-12 border-t border-outline-variant/30 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-      <!-- Left Column: Copy & CTA -->
       <div class="lg:col-span-6 space-y-5">
         <span class="px-4 py-1.5 rounded-full bg-surface-container-high text-primary text-xs font-bold uppercase tracking-wider inline-block">
           Comunidad &amp; Consejos
@@ -287,7 +274,7 @@
             target="_blank"
           >
             <svg aria-hidden="true" class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-              <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"></path>
+              <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3Z" />
             </svg>
             <span>Ver perfil en Instagram</span>
           </a>
@@ -297,21 +284,18 @@
       <!-- Right Column: Phone-style Card for Instagram Feed -->
       <div class="lg:col-span-6 flex justify-center">
         <div class="instagram-phone-feed w-full max-w-[400px] rounded-[2.25rem] bg-surface-container-lowest border-[5px] border-[#262022] dark:border-[#3d3436] shadow-2xl overflow-hidden flex flex-col">
-          <!-- Phone Top Bar / Notch -->
           <div class="bg-[#262022] text-white px-5 pt-2.5 pb-2 flex items-center justify-between text-[11px] font-semibold">
-            <span>&#64;barrioscontadores</span>
+            <span>@barrioscontadores</span>
             <span class="w-14 h-3.5 rounded-full bg-black/70 mx-auto"></span>
             <span class="text-gold-light">IG Feed</span>
           </div>
 
-          <!-- Scrollable Feed Container -->
           <div class="max-h-[540px] overflow-y-auto overflow-x-hidden p-2 bg-surface-container-low">
             <div class="instagram-feed-scale">
               <div class="sk-instagram-feed w-full" data-embed-id="25731201"></div>
             </div>
           </div>
 
-          <!-- Phone Home Indicator -->
           <div class="py-2 bg-surface-container-lowest border-t border-outline-variant/20 flex justify-center">
             <span class="w-24 h-1 rounded-full bg-outline-variant/60"></span>
           </div>
@@ -320,3 +304,82 @@
     </div>
   </div>
 </section>
+
+<script src="https://widgets.sociablekit.com/instagram-feed/widget.js" defer></script>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const statusBox = document.getElementById('contact-status');
+  const statusClose = document.getElementById('contact-status-close');
+  const mailtoLink = document.getElementById('contact-mailto-link') as HTMLAnchorElement | null;
+  const waLink = document.getElementById('contact-wa-link') as HTMLAnchorElement | null;
+
+  const serviceLabels: Record<string, string> = {
+    contabilidad: 'Servicios Contables Generales',
+    declaracion: 'Declaraciones de Renta & ITBMS (DGI)',
+    tramites: 'Aviso de Operación & Trámites Legales',
+    laboral: 'Planillas y Gestión Laboral (SIPE / CSS)',
+    digitales: 'Facturación Electrónica & Soporte e-Tax',
+    otro: 'Asesoría Integral Personalizada',
+  };
+
+  function sanitizeSingleLine(value: string, maxLength: number): string {
+    return value
+      .replace(/[\r\n\t\x00-\x1F\x7F]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, maxLength);
+  }
+
+  function sanitizeMessage(value: string, maxLength: number): string {
+    return value
+      .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
+      .trim()
+      .slice(0, maxLength);
+  }
+
+  statusClose?.addEventListener('click', () => {
+    statusBox?.classList.add('hidden');
+    statusBox?.classList.remove('flex');
+  });
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const website = String(data.get('website') ?? '');
+    if (website.trim().length > 0) return;
+
+    const fullName = sanitizeSingleLine(String(data.get('full_name') ?? ''), 100);
+    const phone = sanitizeSingleLine(String(data.get('phone') ?? ''), 25);
+    const email = sanitizeSingleLine(String(data.get('email') ?? ''), 120);
+    const serviceKey = sanitizeSingleLine(String(data.get('service_interest') ?? ''), 40);
+    const serviceLabel = serviceLabels[serviceKey] || 'Consulta General';
+    const message = sanitizeMessage(String(data.get('message') ?? ''), 1000);
+
+    if (!fullName || !phone || !email) return;
+
+    const subject = `Consulta Web - ${serviceLabel} (${fullName})`;
+    const bodyText = [
+      `Nombre: ${fullName}`,
+      `Teléfono / WhatsApp: ${phone}`,
+      `Correo: ${email}`,
+      `Servicio de interés: ${serviceLabel}`,
+      '',
+      'Detalle de la consulta:',
+      message || '(Sin mensaje adicional)',
+    ].join('\n');
+
+    const mailtoUrl = `mailto:barrioscontadores@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+    const whatsappFallbackUrl = `https://wa.me/50762272263?text=${encodeURIComponent(
+      `Hola, soy ${fullName}. Me interesa: ${serviceLabel}. ${message ? 'Detalle: ' + message : ''} (Tel: ${phone}, Correo: ${email})`,
+    )}`;
+
+    if (mailtoLink) mailtoLink.href = mailtoUrl;
+    if (waLink) waLink.href = whatsappFallbackUrl;
+    statusBox?.classList.remove('hidden');
+    statusBox?.classList.add('flex');
+
+    form.reset();
+    window.location.href = mailtoUrl;
+  });
+</script>

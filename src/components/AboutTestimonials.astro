@@ -1,3 +1,62 @@
+---
+const collageTopImageUrl =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuBRM1YLSlJFoQSgcy2yEp_P_ODFaNZeTI9sUy_vq0y-chddFNrXVTE3Tq2t-RVvPyOp2tqfGNdxUP1xkXzaobrcA0o1l9hhP-AwuBcc_eXrBae2NuqM67jGXofkl_npHK6OIoSIvaFIMiRfVi8r2gsTQ_paKB964pflzMBh9gk6pGXYdbKxVk_IiphPhW5Mx84pjL88yh-eK6jlVcgeQwyrfTAhxumVlGaNeDlnQSmeIef2HVI2wZQ';
+
+const collageBottomImageUrl =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuCnP7WhVcRj9lOHWQjcZMJyXXWvDn8COJlA6uRioWjrkDe0J-cpacVFjFFgyxamx0LGCRtcxpJfB5hGIEO-eQcK5K0eIQZo2HuXj2_XgKXIcPtM9paQ-DOJpWWaD49wAV0qLPWtjZTsMmXUMZgGeaBfd9NpmueRqemvbllwwgIu7bCWTsAEA3GcNkSGAjidgY58TU4AIZdF5rnDWZtdIaB7O5mwR3UXJvoQkhNbhe6ybc0ZoU7AlOI';
+
+const testimonials = [
+  {
+    initial: 'M',
+    avatarBgClass: 'bg-secondary-fixed text-on-secondary-fixed',
+    name: 'María G.',
+    role: 'Emprendedora',
+    quote: '“Gracias a Barrios Contadores pude organizar mis finanzas y cumplir con la DGI sin estrés.”',
+  },
+  {
+    initial: 'C',
+    avatarBgClass: 'bg-primary-fixed text-on-primary-fixed',
+    name: 'Carlos R.',
+    role: 'Dueño de negocio',
+    quote: '“Excelente atención y rapidez, me ayudaron con mi aviso de operación en tiempo récord.”',
+  },
+  {
+    initial: 'A',
+    avatarBgClass: 'bg-tertiary text-on-tertiary',
+    name: 'Ana P.',
+    role: 'Trabajadora independiente',
+    quote: '“Muy profesionales, ahora llevo mi contabilidad al día.”',
+  },
+];
+
+const pillars = [
+  {
+    title: 'Confianza',
+    description: 'Seguridad y ética fiduciaria en cada gestión contable.',
+    icon: 'shield',
+    iconBgClass: 'bg-primary-fixed text-primary',
+  },
+  {
+    title: 'Transparencia',
+    description: 'Cuentas claras e informes fiscales sin sorpresas.',
+    icon: 'visibility',
+    iconBgClass: 'bg-secondary-fixed text-on-secondary-fixed',
+  },
+  {
+    title: 'Rapidez',
+    description: 'Respuestas y trámites ágiles ante la DGI y CSS.',
+    icon: 'bolt',
+    iconBgClass: 'bg-primary-fixed text-primary',
+  },
+  {
+    title: 'Profesionalismo',
+    description: 'Idoneidad CPA y rigor técnico garantizado.',
+    icon: 'military_tech',
+    iconBgClass: 'bg-secondary-fixed text-on-secondary-fixed',
+  },
+];
+---
+
 <section class="bg-surface-container-low border-b border-outline-variant/30 py-10" id="quienes-somos-resumen">
   <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-8">
     <div class="max-w-2xl space-y-3">
@@ -11,7 +70,7 @@
         Comprometidos con el orden financiero, la transparencia y el crecimiento sostenible de cada empresa en Panamá.
       </p>
     </div>
-    <!-- Bento Grid: Misión & Visión, Collage de Fotografías y Reseña Estratégica Digitalithings -->
+
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
       <!-- Columna Izquierda: Collage de Fotografías y Testimonios -->
       <div class="lg:col-span-7 flex flex-col gap-6">
@@ -25,9 +84,8 @@
                 class="w-full h-56 sm:h-64 object-cover object-center group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
                 decoding="async"
-                [src]="collageTopImageUrl"
-              >
-              <!-- Top-left subtle pill badge -->
+                src={collageTopImageUrl}
+              />
               <div class="absolute top-3 left-3 bg-surface-container-lowest/90 backdrop-blur-md px-3.5 py-1 rounded-full border border-outline-variant/30 shadow-xs flex items-center gap-1.5 z-10">
                 <span class="w-2 h-2 rounded-full bg-gold-deep"></span>
                 <span class="text-[11px] font-semibold text-on-surface-variant tracking-tight">
@@ -39,15 +97,13 @@
             <!-- Bottom Image Card -->
             <div class="relative w-[90%] -mt-16 mr-auto rounded-3xl overflow-hidden border-4 border-surface-container-lowest shadow-xl z-20 group">
               <img
-                alt="Equipo y servicios contables - Barrios Contadores &amp; Asociados"
+                alt="Equipo y servicios contables - Barrios Contadores & Asociados"
                 class="w-full h-72 sm:h-80 object-cover group-hover:scale-105 transition-transform duration-300"
                 style="object-position: 50% 12%;"
                 loading="lazy"
                 decoding="async"
-                [src]="collageBottomImageUrl"
-              >
-
-              <!-- Badge bottom-right: Atención ágil -->
+                src={collageBottomImageUrl}
+              />
               <div class="absolute bottom-3 right-3 bg-surface-container-lowest/95 backdrop-blur-md px-3 py-1 rounded-full border border-outline-variant/30 shadow-xs z-30 hidden sm:flex items-center gap-1.5">
                 <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
                 <span class="text-[11px] font-bold text-on-surface tracking-tight">
@@ -71,14 +127,7 @@
         <div
           class="p-6 sm:p-7 rounded-3xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex flex-col gap-4 group hover:border-primary/40 transition-all relative overflow-hidden"
           id="testimonios"
-          (mouseenter)="pauseAutoplay()"
-          (mouseleave)="resumeAutoplay()"
-          (focusin)="pauseAutoplay()"
-          (focusout)="resumeAutoplay()"
-          (touchstart)="pauseAutoplay()"
-          (touchend)="resumeAutoplay()"
         >
-          <!-- Header with Category Tag and Navigation Arrows -->
           <div class="flex items-center justify-between gap-3 pb-1 border-b border-outline-variant/20">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-gold-deep text-lg">format_quote</span>
@@ -90,90 +139,79 @@
               <button
                 type="button"
                 aria-label="Testimonio anterior"
+                data-testimonial-prev
                 class="w-8 h-8 rounded-full border border-outline-variant/40 bg-surface-container-low text-on-surface hover:bg-primary hover:text-on-primary hover:border-primary active:scale-95 transition-all flex items-center justify-center shadow-xs cursor-pointer"
-                (click)="scrollTestimonials(-1)"
               >
                 <span class="material-symbols-outlined text-base">chevron_left</span>
               </button>
               <button
                 type="button"
                 aria-label="Siguiente testimonio"
+                data-testimonial-next
                 class="w-8 h-8 rounded-full border border-outline-variant/40 bg-surface-container-low text-on-surface hover:bg-primary hover:text-on-primary hover:border-primary active:scale-95 transition-all flex items-center justify-center shadow-xs cursor-pointer"
-                (click)="scrollTestimonials(1)"
               >
                 <span class="material-symbols-outlined text-base">chevron_right</span>
               </button>
             </div>
           </div>
 
-          <!-- Horizontal Scrolling Slider Track -->
           <div
-            #testimonialsSlider
-            (scroll)="onTestimonialsScroll()"
+            id="testimonials-slider"
             class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-1 pt-1"
           >
-            <div
-              *ngFor="let item of testimonials"
-              class="w-full flex-shrink-0 snap-start flex flex-col gap-3.5"
-            >
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <div class="flex items-center gap-3">
-                  <div
-                    [ngClass]="item.avatarBgClass"
-                    class="w-11 h-11 rounded-2xl flex items-center justify-center font-bold text-lg shadow-xs flex-shrink-0"
-                  >
-                    <span>{{ item.initial }}</span>
+            {testimonials.map((item) => (
+              <div class="w-full flex-shrink-0 snap-start flex flex-col gap-3.5">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex items-center gap-3">
+                    <div class:list={['w-11 h-11 rounded-2xl flex items-center justify-center font-bold text-lg shadow-xs flex-shrink-0', item.avatarBgClass]}>
+                      <span>{item.initial}</span>
+                    </div>
+                    <div>
+                      <h4 class="font-headline-large text-base sm:text-lg font-bold text-on-surface leading-tight">
+                        {item.name}
+                      </h4>
+                      <span class="text-xs text-secondary font-medium block">{item.role}</span>
+                    </div>
                   </div>
-                  <div>
-                    <h4 class="font-headline-large text-base sm:text-lg font-bold text-on-surface leading-tight">
-                      {{ item.name }}
-                    </h4>
-                    <span class="text-xs text-secondary font-medium block">{{ item.role }}</span>
+                  <div aria-label="Calificación: 5 de 5 estrellas" class="flex items-center gap-0.5 text-gold-deep">
+                    {[1, 2, 3, 4, 5].map(() => (
+                      <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">
+                        star
+                      </span>
+                    ))}
                   </div>
                 </div>
-                <div aria-label="Calificación: 5 de 5 estrellas" class="flex items-center gap-0.5 text-gold-deep">
-                  <span
-                    *ngFor="let star of [1, 2, 3, 4, 5]"
-                    class="material-symbols-outlined text-base"
-                    style="font-variation-settings: 'FILL' 1;"
-                  >
-                    star
-                  </span>
-                </div>
+                <p class="text-sm text-on-surface-variant leading-relaxed italic">
+                  {item.quote}
+                </p>
               </div>
-              <p class="text-sm text-on-surface-variant leading-relaxed italic">
-                {{ item.quote }}
-              </p>
-            </div>
+            ))}
           </div>
 
-          <!-- Bottom Interactive Dots Indicator & Trust Seal -->
           <div class="flex items-center justify-between pt-2 border-t border-outline-variant/20">
             <div class="flex items-center gap-2 text-xs text-primary font-semibold">
               <span class="material-symbols-outlined text-base">handshake</span>
               <span>Alianza fiduciaria &amp; consultoría fiscal de confianza</span>
             </div>
             <div class="flex items-center gap-1.5">
-              <button
-                *ngFor="let item of testimonials; let i = index"
-                type="button"
-                [attr.aria-label]="'Ver testimonio ' + (i + 1)"
-                (click)="goToTestimonial(i)"
-                [ngClass]="
-                  activeTestimonialIndex === i
-                    ? 'w-6 h-2 bg-primary'
-                    : 'w-2 h-2 bg-outline-variant hover:bg-primary/50'
-                "
-                class="rounded-full transition-all duration-200 cursor-pointer"
-              ></button>
+              {testimonials.map((_, i) => (
+                <button
+                  type="button"
+                  aria-label={`Ver testimonio ${i + 1}`}
+                  data-testimonial-dot={i}
+                  class:list={[
+                    'rounded-full transition-all duration-200 cursor-pointer',
+                    i === 0 ? 'w-6 h-2 bg-primary' : 'w-2 h-2 bg-outline-variant hover:bg-primary/50',
+                  ]}
+                ></button>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Columna Derecha: Tarjetas concisas de Misión, Visión y Valores -->
+      <!-- Columna Derecha: Misión, Visión y Valores -->
       <div class="lg:col-span-5 flex flex-col gap-5">
-        <!-- Misión -->
         <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex-1 flex flex-col justify-between gap-3.5 group hover:border-primary/40 transition-all">
           <div class="flex flex-col gap-3">
             <div class="flex items-center gap-3">
@@ -195,7 +233,6 @@
           </div>
         </div>
 
-        <!-- Visión -->
         <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex-1 flex flex-col justify-between gap-3.5 group hover:border-primary/40 transition-all">
           <div class="flex flex-col gap-3">
             <div class="flex items-center gap-3">
@@ -217,27 +254,94 @@
           </div>
         </div>
 
-        <!-- 4 Pilares de Confianza -->
         <div class="grid grid-cols-2 gap-3.5">
-          <div
-            *ngFor="let pillar of pillars"
-            class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/30 shadow-xs flex flex-col gap-2 hover:border-primary/30 hover:shadow-sm transition-all"
-          >
-            <div class="flex items-center gap-2.5">
-              <div
-                [ngClass]="pillar.iconBgClass"
-                class="w-7 h-7 rounded-xl flex items-center justify-center flex-shrink-0"
-              >
-                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">
-                  {{ pillar.icon }}
-                </span>
+          {pillars.map((pillar) => (
+            <div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/30 shadow-xs flex flex-col gap-2 hover:border-primary/30 hover:shadow-sm transition-all">
+              <div class="flex items-center gap-2.5">
+                <div class:list={['w-7 h-7 rounded-xl flex items-center justify-center flex-shrink-0', pillar.iconBgClass]}>
+                  <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">
+                    {pillar.icon}
+                  </span>
+                </div>
+                <h4 class="text-xs font-bold text-on-surface">{pillar.title}</h4>
               </div>
-              <h4 class="text-xs font-bold text-on-surface">{{ pillar.title }}</h4>
+              <p class="text-[11px] leading-snug text-on-surface-variant">{pillar.description}</p>
             </div>
-            <p class="text-[11px] leading-snug text-on-surface-variant">{{ pillar.description }}</p>
-          </div>
+          ))}
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  const container = document.getElementById('testimonios');
+  const track = document.getElementById('testimonials-slider');
+  const dotButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-testimonial-dot]'));
+  const totalTestimonials = dotButtons.length;
+  let activeTestimonialIndex = 0;
+  let isPaused = false;
+  let autoplayTimer: ReturnType<typeof setInterval> | undefined;
+
+  function updateDots(index: number) {
+    activeTestimonialIndex = index;
+    dotButtons.forEach((btn, i) => {
+      const active = i === index;
+      btn.classList.toggle('w-6', active);
+      btn.classList.toggle('bg-primary', active);
+      btn.classList.toggle('w-2', !active);
+      btn.classList.toggle('bg-outline-variant', !active);
+      btn.classList.toggle('hover:bg-primary/50', !active);
+    });
+  }
+
+  function goToTestimonial(index: number) {
+    updateDots(index);
+    if (!track) return;
+    const step = track.clientWidth + 16;
+    track.scrollTo({ left: step * index, behavior: 'smooth' });
+  }
+
+  document.querySelector('[data-testimonial-prev]')?.addEventListener('click', () => {
+    goToTestimonial(Math.max(0, activeTestimonialIndex - 1));
+  });
+
+  document.querySelector('[data-testimonial-next]')?.addEventListener('click', () => {
+    goToTestimonial(Math.min(totalTestimonials - 1, activeTestimonialIndex + 1));
+  });
+
+  dotButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      goToTestimonial(Number(btn.dataset.testimonialDot));
+    });
+  });
+
+  track?.addEventListener(
+    'scroll',
+    () => {
+      if (!track || track.clientWidth === 0) return;
+      const idx = Math.round(track.scrollLeft / (track.clientWidth + 16));
+      if (idx >= 0 && idx < totalTestimonials) {
+        updateDots(idx);
+      }
+    },
+    { passive: true },
+  );
+
+  if (container) {
+    container.addEventListener('mouseenter', () => (isPaused = true));
+    container.addEventListener('mouseleave', () => (isPaused = false));
+    container.addEventListener('focusin', () => (isPaused = true));
+    container.addEventListener('focusout', () => (isPaused = false));
+    container.addEventListener('touchstart', () => (isPaused = true), { passive: true });
+    container.addEventListener('touchend', () => (isPaused = false), { passive: true });
+  }
+
+  const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion && totalTestimonials > 1) {
+    autoplayTimer = setInterval(() => {
+      if (isPaused) return;
+      goToTestimonial((activeTestimonialIndex + 1) % totalTestimonials);
+    }, 4500);
+  }
+</script>
